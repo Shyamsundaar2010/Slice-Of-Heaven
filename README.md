@@ -1,0 +1,1 @@
+The pizza application is a comprehensive pizza ordering system enabling users to register, login, and track order status. Utilized a tech stack including HTML, CSS, JavaScript, Flask, and PostgreSQL for seamless data storage and retrieval.
