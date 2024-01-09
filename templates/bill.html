@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Food Cart</title>
+<meta charset="utf-8" />
+
+<link rel="stylesheet" type="text/css"  href= "{{ url_for('static',filename='css/checkout.css')}}">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+	<link rel="stylesheet" href= "{{ url_for('static',filename='css/bootstrap.min.css')}}">
+	<link rel="stylesheet" href= "{{ url_for('static',filename='css/animate.min.css') }}">
+	<link rel="stylesheet" href= "{{ url_for('static',filename='css/font-awesome.min.css') }}">
+	<link rel="stylesheet" href= "{{ url_for('static',filename='css/nivo-lightbox.css') }}">
+	<link rel="stylesheet" href= "{{ url_for('static',filename='css/nivo_themes/default/default.css')}}">
+	<!--<link rel="stylesheet" href="css/style.css">-->
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+<script  src="{{ url_for('static', filename='js/jquery.shop.js')}}" data-turbolinks-track="reload"></script>
+
+</head>
+
+<body>
+    <section class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand">PIZZA</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/" class="smoothScroll">HOME</a></li>
+                    <!--<li><a href="#gallery" class="smoothScroll">FOOD GALLERY</a></li>-->
+                    <li><a href="/menu" class="smoothScroll">MENU</a></li>
+                    <!-- <li><a href="/cart" class="smoothScroll">ORDER</a></li>
+                    <li><a href="/checkout" class="smoothScroll">CHECKOUT</a></li> -->
+                    <li><a href="/signup" class="smoothScroll">LOGOUT</a></li>
+					<!--<li><a href="/order/" class="smoothScroll">ORDER</a></li>-->
+                </ul>
+            </div>
+        </div>
+    </section>
+<div id="site">
+	<header id="masthead">
+		<h1>Food Cart <span class="tagline"></h1>
+	</header>
+	<div id="content">
+		<h1>Checkout : </h1>
+
+	<table id="checkout-cart" class="shopping-cart">
+	<thead>
+		<tr>
+			<th scope="col">ORDER ID</th>
+			<th scope="col">ITEM NAME</th>
+			<th scope="col">QUANTITY</th>
+		</tr>
+
+	</thead>
+    <tbody>
+        {% for row in data %}    
+               <tr>
+                   <td>{{row[0]}}</td>
+                   <td>{{row[1]}}</td>
+                   <td>{{row[2]}}</td>
+               </tr>
+           {% endfor %}
+       </tbody>
+	<tbody>
+
+	</tbody>
+</table>
+
+
+<div id="pricing">
+	<!-- <p id="shipping">
+		<strong>Shipping</strong>: <span id="sshipping"></span>
+	</p> -->
+
+	<p id="sub-total">
+		<strong>Total</strong>: {{total}}<span id="stotal"></span>
+	</p>
+</div>
+ <div class="menu_order">
+    <p align="center"><a href=/deleteorder><button class=grey style="height:75px;width:150px">DELETE ORDER</button></a></p>  
+</div> 
+<div class="menu_order">
+    <p align="center"><a><button onclick="myFunction()" class=grey style="height:75px;width:150px">PROCEED</button></a></p>  
+</div> 
+
+<!--<form action="order.html" method="post" id="checkout-order-form">
+	<h2>Your Details</h2>
+		<fieldset id="fieldset-billing">
+			<legend>Billing</legend>
+
+
+<div>
+	<label for="name">Name</label>
+	<input type="text" name="name" id="name" data-type="string" data-message="This field may not be empty" />
+</div>
+
+<div>
+	<label for="email">Email</label>
+	<input type="text" name="email" id="email" data-type="expression" data-message="Not a valid email address" />
+</div>
+
+<div>
+	<label for="city">City</label>
+	<input type="text" name="city" id="city" data-type="string" data-message="This field may not be empty" />
+</div>
+
+<div>
+	<label for="address">Address</label>
+		<input type="text" name="address" id="address" data-type="string" data-message="This field may not be empty" />
+</div>
+
+<div>
+	<label for="zip">ZIP Code</label>
+	<input type="text" name="zip" id="zip" data-type="string" data-message="This field may not be empty" />
+</div>
+
+<div>
+	<label for="country">Country</label>
+		<select name="country" id="country" data-type="string" data-message="This field may not be empty">
+			<option value="">Select</option>
+			<option value="US">USA</option>
+			<option value="IT">Italy</option>
+		</select>
+</div>
+</fieldset>
+
+<div id="shipping-same">Same as Billing <input type="checkbox" id="same-as-billing" value=""/></div>
+
+<fieldset id="fieldset-shipping">
+<legend>Shipping</legend>
+
+</fieldset>
+
+<p><input type="submit" id="submit-order" value="Submit" class="btn" /></p>
+
+</form>
+	</div>
+
+</div>
+<br><br><br>
+-->
+<script>
+    function myFunction() {
+        alert("Ordered");
+        window.location = '/home';
+      }
+</script>
+
+</body>
+</html>	
+
+
+
+
+

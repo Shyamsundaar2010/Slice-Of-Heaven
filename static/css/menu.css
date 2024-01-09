@@ -1,0 +1,35 @@
+.navbar-default .navbar-nav li a {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color:black
+}
+.navbar-default .navbar-nav li a:hover {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: white;
+  background: black;
+}
+.menu_order a,input[type="submit"]
+{
+margin: 0% 45%;
+padding: 5px 10px;
+height: 50px;
+font-size: 30px;
+font-weight: bolder;
+}
+.menu_order a,input[type="submit"]:hover
+{
+background-color: black;
+color: white;
+}
+#menu
+{
+  font-family: "Amatic SC", sans-serif;
+  background:black
+}
+.w3-row a{
+  color: white !important;
+}
+.w3-right{
+float: right;
+}

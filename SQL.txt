@@ -1,0 +1,110 @@
+-- USER TABLE
+
+create table user_table (u_id serial,f_name varchar(30),l_name varchar(30),
+						 email varchar(40) not null,gender char(1),
+						 address varchar(120),create_date date,
+						 mobile_number bigserial,
+						 constraint utpk primary key (u_id));
+alter table user_table add constraint Gen check (gender in('M','F')) ;
+
+create or replace procedure "userTableDetails"
+(firstName in varchar(20),lastName in varchar(20),mail in varchar(50),
+gender in char(1),address in varchar(120),pno in bigint)
+language plpgsql
+as $$
+begin
+	insert into userTable(f_name,l_name,email,gender,address,create_date,mobile_number) values
+	(firstName,lastName,mail,gender,address,current_date,pno);
+end; $$
+
+select * from user_table;
+--LOGIN DETAILS TABLE
+
+create table login_details(user_mail varchar(30),user_password text);
+alter table login_details add constraint ldpk1 primary key (user_mail);
+
+create or replace procedure "add_login_details"
+(mail in varchar(30),user_pw in text)
+language plpgsql
+as $$
+begin
+	insert into login_details values(mail,crypt(user_pw,gen_salt('bf')));
+end;$$
+
+select * from login_details;
+
+create or replace function verify_user(mail in varchar(30),user_pw in text)
+returns refcursor as $$
+
+declare
+	ref refcursor;
+begin
+	open ref for select user_mail from login_details where
+	user_mail = mail and
+	user_password = crypt(user_pw,user_password);
+	return ref;
+exception
+	when no_data_found then
+		raise notice 'NO SUCH ACCOUNT';
+end;
+$$ language plpgsql;
+
+select verify_user('user1@gmail.com','user1');
+select user_mail from login_details where user_mail = 'nithidotcom@gmail.com' and user_password = crypt('nithiya',user_password);
+
+
+--- menu table
+create table menu_table(menuid serial,nameitem varchar(30)
+					   ,constraint mpk1 primary key(menuid));
+					 
+insert into menu_table(nameitem) values ('Margherita');
+insert into menu_table(nameitem) values ('Formaggio');
+insert into menu_table(nameitem) values ('Pineapple O clock');
+insert into menu_table(nameitem) values ('Meat Town');
+insert into menu_table(nameitem) values ('Bruschetta');
+insert into menu_table(nameitem) values ('Garlic Bread');
+insert into menu_table(nameitem) values ('Tomozzarella');
+
+--- order table
+create table order_table(oid serial,uid integer,price decimal(10,2),
+						 constraint otpk primary key(oid));
+alter table order_table add constraint otfk1 foreign key (uid) references user_table(u_id);
+select * from order_table;
+
+create or replace procedure "add_order_details"
+(price in decimal(10,2),mail in text)
+language plpgsql
+as $$
+begin
+	insert into order_table(uid,price) values((select u_id from user_table where email = mail),price);
+end;$$
+
+--order item table
+create table order_item(orderid integer,itemname varchar(50),qty integer,
+					   constraint oripk primary key(orderid,itemname));
+alter table order_item add constraint oifk foreign key(orderid) references order_table(oid);
+
+
+--triggers
+create table order_status (orderid integer,status varchar(10),
+						   constraint pkk1 primary key(orderid),
+						  constraint tfk1 foreign key(orderid) references order_table(oid));
+						
+						
+
+CREATE OR REPLACE function add_order_details() RETURNS TRIGGER AS $add_order_activity$
+   BEGIN
+      INSERT INTO "order_status" VALUES (new.oid,'APPROVED');
+      RETURN NEW;
+   END;
+$add_order_activity$ LANGUAGE plpgsql;
+
+CREATE TRIGGER add_order_details AFTER INSERT ON "order_table"
+FOR EACH ROW EXECUTE PROCEDURE add_order_details();
+select * from order_status;
+
+select * from user_table;
+select * from order_table;
+select * from order_item;
+insert into order_table (uid,price) values(2,10);
+select oid from order_table where uid = (select u_id from user_table where email = 'nithidotcom@gmail.com');

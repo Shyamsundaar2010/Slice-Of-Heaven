@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<title>MENU</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href= "{{ url_for('static',filename='css/menu.css')}}">
+<link rel="stylesheet" href= "{{ url_for('static',filename='css/w3_menu.css')}}">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+<link rel="stylesheet" href= "{{ url_for('static',filename='css/bootstrap.min.css')}}">
+<link rel="stylesheet" href= "{{ url_for('static',filename='css/animate.min.css') }}">
+<link rel="stylesheet" href= "{{ url_for('static',filename='css/font-awesome.min.css') }}">
+<link rel="stylesheet" href= "{{ url_for('static',filename='css/nivo-lightbox.css') }}">
+<link rel="stylesheet" href= "{{ url_for('static',filename='css/nivo_themes/default/default.css')}}">
+	<!--<link rel="stylesheet" href="css/style.css">-->
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+
+<body>
+
+<!-- Navbar (sit on top) -->
+<!-- navigation section -->
+<section class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon icon-bar"></span>
+				<span class="icon icon-bar"></span>
+				<span class="icon icon-bar"></span>
+			</button>
+			<a href="#" class="navbar-brand">PIZZA</a>
+		</div>
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="/home" class="smoothScroll">HOME</a></li>
+				<!--<li><a href="#gallery" class="smoothScroll">FOOD GALLERY</a></li>-->
+				<li><a href="/menu" class="smoothScroll">MENU</a></li>
+			<!--	<li><a href="/cart" class="smoothScroll">ORDER</a></li>-->
+				<!-- <li><a href="/checkout" class="smoothScroll">CHECKOUT</a></li>
+        <li><a href="/order/" class="smoothScroll">ORDER</a></li> -->
+        <li><a href="/home" class="smoothScroll">LOGOUT</a></li>
+			</ul>
+		</div>
+	</div>
+</section>
+  
+
+<!-- Menu Container -->
+<div class="w3-container w3-black w3-padding-64 w3-xxlarge" id="menu">
+  <div class="w3-content">
+  
+    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">THE MENU</h1>
+    <div class="w3-row w3-center w3-border w3-border-dark-grey">
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Pizza');" id="myLink">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Pizza</div>
+      </a>
+      <!--<a href="javascript:void(0)" onclick="openMenu(event, 'Pasta');">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Salads</div>
+      </a>-->
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Starter');">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Starter</div>
+      </a>
+    </div>
+
+  <form action="/menu" enctype = "multipart/form-data" method="POST">
+    <div id="Pizza" class="w3-container menu w3-padding-32 w3-white">
+      <h1><b>Margherita</b> 
+       <br><br>
+      <span <label for="p1">QTY:</label>
+      <input type="number" id="pin" name="p1" maxlength="4" size="4" value="0" ></span><br><br>
+      <span class="w3-right w3-tag w3-dark-grey w3-round">$12.50</span></h1>
+      <p class="w3-text-grey">Fresh tomatoes, fresh mozzarella, fresh basil</p>
+      <hr>
+   
+      <h1><b>Formaggio</b> <br><br>
+      <span <label for="p2">QTY:</label>
+      <input type="number" id="pin" name="p2" maxlength="4" size="4" value="0" ></span><br><br>
+      <span class="w3-right w3-tag w3-dark-grey w3-round">$15.50</span></h1>
+      <p class="w3-text-grey">Four cheeses (mozzarella, parmesan, pecorino, jarlsberg)</p>
+      <hr>
+      
+      <h1><b>Pineapple'o'clock</b> 
+       <br><br>
+      <span <label for="p3">QTY:</label>
+      <input type="number" id="pin" name="p3" maxlength="4" size="4" value="0" ></span><br><br>
+      <span class="w3-right w3-tag w3-dark-grey w3-round">$16.50</span></h1>
+      <p class="w3-text-grey">Fresh tomatoes, mozzarella, fresh pineapple, bacon, fresh basil</p>
+      <hr>
+
+      <h1><b>Meat Town</b> 
+      <br><br>
+      <span <label for="p4">QTY:</label>
+      <input type="number" id="pin" name="p4" maxlength="4" size="4" value="0" ></span><br><br>
+      <span class="w3-tag w3-red w3-round">Hot!</span><span class="w3-right w3-tag w3-dark-grey w3-round">$20.00</span></h1>
+      <p class="w3-text-grey">Fresh tomatoes, mozzarella, hot pepporoni, hot sausage, beef, chicken</p>
+      <hr>
+     </div>
+    <div id="Starter" class="w3-container menu w3-padding-32 w3-white">
+      <h1><b>Bruschetta</b>
+        <br><br>
+      <span <label for="s1">QTY:</label>
+      <input type="number" id="pin" name="s1" maxlength="4" size="4" value="0" ></span><br><br>
+       <span class="w3-right w3-tag w3-dark-grey w3-round">$8.50</span></h1>
+      <p class="w3-text-grey">Bread with pesto, tomatoes, onion, garlic</p>
+      <hr>
+      
+      <h1><b>Garlic bread</b>
+        <br><br>
+      <span <label for="s2">QTY:</label>
+      <input type="number" id="pin" name="s2" maxlength="4" size="4" value="0" ></span><br><br>
+       <span class="w3-right w3-tag w3-dark-grey w3-round">$9.50</span></h1>
+      <p class="w3-text-grey">Grilled ciabatta, garlic butter, onions</p>
+      <hr>
+      
+      <h1><b>Tomozzarella</b>
+        <br><br>
+      <span <label for="s3">QTY:</label>
+      <input type="number" id="pin" name="s3" maxlength="4" size="4" value="0" ></span><br><br>
+       <span class="w3-right w3-tag w3-dark-grey w3-round">$10.50</span></h1>
+      <p class="w3-text-grey">Tomatoes and mozzarella</p>
+    </div><br>
+    <div class="menu_order">
+      <input type="submit" name="sign_submit" placeholder="Submit">
+    </div>
+
+  </form>
+ 
+  
+  
+</div>
+
+<!-- footer section -->
+<footer class="parallax-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.6s">
+				<h2 class="heading">Contact Info.</h2>
+				<div class="ph">
+					<p><i class="fa fa-phone"></i> Phone</p>
+					<h4>090-080-0760</h4>
+				</div>
+				<div class="address">
+					<p><i class="fa fa-map-marker"></i> Our Location</p>
+					<h4>120 Duis aute irure, California, USA</h4>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.6s">
+				<h2 class="heading">Open Hours</h2>
+					<p>Sunday <span>10:30 AM - 10:00 PM</span></p>
+					<p>Mon-Fri <span>9:00 AM - 8:00 PM</span></p>
+					<p>Saturday <span>11:30 AM - 10:00 PM</span></p>
+			</div>
+			<div class="col-md-4 col-sm-4 wow fadeInUp" data-wow-delay="0.6s">
+				<h2 class="heading">Follow Us</h2>
+				<ul class="social-icon">
+					<li><a href="#" class="fa fa-facebook wow bounceIn" data-wow-delay="0.3s"></a></li>
+					<li><a href="#" class="fa fa-twitter wow bounceIn" data-wow-delay="0.6s"></a></li>
+					<li><a href="#" class="fa fa-behance wow bounceIn" data-wow-delay="0.9s"></a></li>
+					<li><a href="#" class="fa fa-dribbble wow bounceIn" data-wow-delay="0.9s"></a></li>
+					<li><a href="#" class="fa fa-github wow bounceIn" data-wow-delay="0.9s"></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+
+
+<!-- copyright section -->
+<section id="copyright">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<h3>PIZZA</h3>
+				<p>Copyright © PIZZA Restaurant and Cafe 
+                
+
+			</div>
+		</div>
+	</div>
+</section>
+<script>
+// Tabbed Menu
+function openMenu(evt, menuName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("menu");
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+     tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  document.getElementById(menuName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-red";
+}
+document.getElementById("myLink").click();
+</script>
+
+</body>
+</html>
+
